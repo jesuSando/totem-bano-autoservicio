@@ -366,7 +366,7 @@ export default function HomePage() {
       style={{ padding: "150px 80px" }}
     >
 
-      <Header onClick={fetchServicios}/>
+      <Header onClick={fetchServicios} />
 
       <div
         className="font-bold mb-10 text-white"

@@ -19,10 +19,9 @@ export async function getIp() {
     }
 }
 
-export async function getCredentials() {
+export async function getCredentials(totemIp) {
     try {
-        // Llamamos a nuestro endpoint interno de Next.js que usa el token privado
-        const res = await fetch("/api/totem-credentials");
+        const res = await fetch(`/api/totem-credentials?ip=${totemIp}`);
         if (!res.ok) throw new Error("Error obteniendo credenciales: " + res.status);
         return res.json();
     } catch (err) {

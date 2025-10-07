@@ -2,6 +2,7 @@ import { getToken, setToken } from "@/utils/session";
 import { getCredentials } from "./totem.service";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_REMOTO;
+const TOTEM_IP = localStorage.getItem("ip_totem");
 
 // Lock para evitar múltiples renovaciones simultáneas
 let refreshingPromise = null;
@@ -75,7 +76,7 @@ async function fetchWithToken(endpoint, options = {}, { maxRefreshAttempts = 1 }
             refreshingPromise = (async () => {
                 try {
                     console.log("[banioService] Token expirado, reautenticando...");
-                    const creds = await getCredentials();
+                    const creds = await getCredentials(TOTEM_IP);
                     const loginResp = await login(creds.email, creds.password);
                     if (!loginResp || !loginResp.token) throw new Error("Login no devolvió token");
                     setToken(loginResp.token, loginResp.user);
