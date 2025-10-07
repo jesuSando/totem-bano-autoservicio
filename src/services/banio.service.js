@@ -2,7 +2,6 @@ import { getToken, setToken } from "@/utils/session";
 import { getCredentials } from "./totem.service";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_REMOTO;
-const TOTEM_IP = localStorage.getItem("ip_totem");
 
 // Lock para evitar múltiples renovaciones simultáneas
 let refreshingPromise = null;
@@ -36,6 +35,11 @@ async function safeFetch(endpoint, options = {}) {
 }
 
 async function fetchWithToken(endpoint, options = {}, { maxRefreshAttempts = 1 } = {}) {
+    let TOTEM_IP;
+    if (typeof window !== 'undefined') {
+        TOTEM_IP = localStorage.getItem("ip_totem");
+    }
+
     let token = getToken();
 
     const doFetch = async (tokenToUse) => {

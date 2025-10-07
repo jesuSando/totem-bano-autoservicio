@@ -51,6 +51,7 @@ export default function HomePage() {
             if (!dataIP || !dataIP.ip) throw new Error("IP inválida");
 
             localStorage.setItem("ip", dataIP.ip);
+            localStorage.setItem("ip_totem", dataIP.ip_totem);
             if (dataIP.ubicacion) localStorage.setItem("site", dataIP.ubicacion);
 
             console.log("IP obtenida:", dataIP.ip);
@@ -366,7 +367,7 @@ export default function HomePage() {
       style={{ padding: "150px 80px" }}
     >
 
-      <Header onClick={fetchServicios} />
+      <Header onClick={fetchServicios}/>
 
       <div
         className="font-bold mb-10 text-white"
