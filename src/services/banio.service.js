@@ -35,10 +35,6 @@ async function safeFetch(endpoint, options = {}) {
 }
 
 async function fetchWithToken(endpoint, options = {}, { maxRefreshAttempts = 1 } = {}) {
-    let TOTEM_IP;
-    if (typeof window !== 'undefined') {
-        TOTEM_IP = localStorage.getItem("ip_totem");
-    }
 
     let token = getToken();
 
@@ -80,7 +76,7 @@ async function fetchWithToken(endpoint, options = {}, { maxRefreshAttempts = 1 }
             refreshingPromise = (async () => {
                 try {
                     console.log("[banioService] Token expirado, reautenticando...");
-                    const creds = await getCredentials(TOTEM_IP);
+                    const creds = await getCredentials();
                     const loginResp = await login(creds.email, creds.password);
                     if (!loginResp || !loginResp.token) throw new Error("Login no devolvió token");
                     setToken(loginResp.token, loginResp.user);
