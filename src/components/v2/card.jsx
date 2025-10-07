@@ -9,26 +9,27 @@ export default function Card({ image, name, price, onClick, disabled = false }) 
             }
         >
             <Image
-                src={`/${image}.png`}
+                src={`/${image}.svg`}
                 alt="Logo"
-                className={`filter invert transition-opacity ${disabled ? "opacity-60" : "opacity-100"}`}
-                width={200}
-                height={200}
+                className={`transition-opacity ${disabled ? "opacity-60" : "opacity-100"}`}
+                width={150}
+                height={150}
             />
             <div className="flex flex-col justify-between"
                 style={{
-                    width: "400px"
+                    width: "450px",
+                    height: "220px"
                 }}
             >
                 <div className="flex items-center justify-between gap-10">
                     <h2 className="text-7xl font-bold text-white m-0">
                         {name}
                     </h2>
-                    <p className="text-4xl font-bold text-white m-0">${price}</p>
+                    <p className="text-5xl font-bold text-white m-0">${price}</p>
                 </div>
 
                 <button
-                    className={`w-full p-7 rounded-full font-bold text-4xl transition-colors duration-200
+                    className={`w-full p-7 rounded-full font-bold text-6xl transition-colors duration-200
                         ${disabled
                             ? "bg-gray-300 text-gray-500 cursor-not-allowed"
                             : "bg-[var(--secondary)] text-white hover:bg-[var(--secondary)]/80"}`}

@@ -367,11 +367,10 @@ export default function HomePage() {
       style={{ padding: "150px 80px" }}
     >
 
-      <Header onClick={fetchServicios}/>
+      <Header onClick={() => window.location.reload()}/>
 
       <div
-        className="font-bold mb-10 text-white"
-        style={{ fontSize: "5rem" }}
+        className="font-bold mb-20 text-white text-8xl text-center"
       >
         ¡Selecciona tu Servicio!
       </div>
@@ -396,7 +395,7 @@ export default function HomePage() {
               name={s.nombre}
               price={s.precio}
               onClick={() => handleClick(s.precio, s.nombre, s.id)}
-              disabled={disabled || loading}
+              disabled={disabled}
             />
           ))}
         </div>
